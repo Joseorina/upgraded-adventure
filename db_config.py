@@ -48,3 +48,19 @@ class PostgresConfig(Postgres):
 
 		except (Exception, p.DatabaseError)	as error:
 			return f"failed to create {database_name}, because of {error}"
+
+	def drop_database(self, database_name):
+		"""
+		Delete a specified database form postgres
+		
+		Arguments:
+			database_name {str} -- [name of db to be deleted]
+		"""
+		try:
+			query = f"""DROP DATABASE IF EXISTS {database_name};"""
+			cursor = self.cursor()
+			cursor.exeecute(query)
+
+		except (Exception, p.DatabaseError) as error:
+			return f"failed to drop databse {database_name}, error {error}"
+			
