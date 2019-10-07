@@ -80,3 +80,21 @@ class PostgresConfig(Postgres):
 
 		except Exception:
 			return 'failed to create table'	
+
+	def drop_table(self, table_name, database_url):
+		"""
+		Drop table if it exists in a dabase
+		
+		Arguments:
+			table_name {str} -- [name of table]
+			database_url {[str]} -- [credentials]
+		"""
+		try:
+			query = f"""DROP TABLE IF EXISTS {table_name} CASCADE"""
+			conn = self.connect(database_url)
+			cursor = conn.cursor()
+			cursor.execute(query)
+			conn.commit()
+
+		except Exception:
+			return f"Unable to delete {table_name}"	
