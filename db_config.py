@@ -97,4 +97,25 @@ class PostgresConfig(Postgres):
 			conn.commit()
 
 		except Exception:
-			return f"Unable to delete {table_name}"	
+			return f"Unable to delete {table_name}"
+
+	def show_table(self, query, url=DATABASE_URL):
+		"""
+		Show tables in a database
+		
+		Arguments:
+			query {[Docstring]} -- [sql statement]
+		"""
+		query = ("""SELECT table FROM information_schema.tables WHERE table_schema = 'public'""")
+
+		try:
+			connection = self.connect(url)
+			cursor = connection.cursor()
+			cursor.exeecute(query)
+			tables = cursor.fetchall()
+
+			for table in tables:
+				print(table)
+
+		except:
+			return 'connection failed'		
