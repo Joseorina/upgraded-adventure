@@ -47,6 +47,6 @@ class Postgres(ABC):
     def drop_database(self, database_name):
         pass
 
-    #@abstractmethod
+    @abstractmethod
     def close(self):
         pass
