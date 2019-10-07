@@ -63,4 +63,20 @@ class PostgresConfig(Postgres):
 
 		except (Exception, p.DatabaseError) as error:
 			return f"failed to drop databse {database_name}, error {error}"
-			
+
+	def create_table(self, query, database_url):
+		"""
+		Creates a table in a specified database
+		
+		Arguments:
+			query {str} -- [sql query to be executed]
+			database_url {[str]} -- [database creation credentials]
+		"""
+		try:
+			conn = self.connect(database_url)
+			cursor = conn.cursor()
+			cursor.execute(query)
+			conn.commit()
+
+		except Exception:
+			return 'failed to create table'	

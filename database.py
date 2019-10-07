@@ -27,7 +27,7 @@ class Postgres(ABC):
     def select_table(self,query):
         pass
 
-    #@abstractmethod
+    @abstractmethod
     def create_table(self, query, database_url):
         pass
 
