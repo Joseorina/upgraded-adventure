@@ -118,4 +118,22 @@ class PostgresConfig(Postgres):
 				print(table)
 
 		except:
-			return 'connection failed'		
+			return 'connection failed'
+
+	def close(self, connection):
+		"""
+		Close connection
+		
+		Arguments:
+			connection {[type]} -- [description]
+		"""
+		try:
+			connection.close()
+
+			return "Succesful"
+
+		except:
+			return "Close connection failed"	
+
+if __name__ == "__main__":
+	db = PostgresConfig()				
