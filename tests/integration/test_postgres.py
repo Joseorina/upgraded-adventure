@@ -16,6 +16,7 @@ class PostgresTestCase(TestCase):
 				date_created timestamp with time zone DEFAULT ('now'::text)::date NOT NULL
 				)"""
 		self.table_name = 'test_table_one'
-				
+
 	def tearDown(self):
-		pass
+		self.postgres.drop_table(self.table_name, TEST_DATABASE_URL)
+		self.postgres.drop_database(self.database_name)
