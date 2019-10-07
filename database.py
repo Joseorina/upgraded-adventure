@@ -19,7 +19,7 @@ class Postgres(ABC):
     def status(self):
         pass
 
-    #@abstractmethod
+    @abstractmethod
     def cursor(self):
         pass
 
