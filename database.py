@@ -11,7 +11,7 @@ class Postgres(ABC):
         autocommit = True
         pass
 
-    #@abstractmethod
+    @abstractmethod
     def create_database(self, database_name):
         pass
 

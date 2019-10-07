@@ -33,3 +33,18 @@ class PostgresConfig(Postgres):
 		except (Exception, p.DatabaseError) as error:
 			return f"failed to create databse {database_name}, due to {error}"	
 		
+
+	def create_database(self, database_name):
+		"""
+		Create databse on postgresql server
+		
+		Arguments:
+			database_name {str} -- [name of db]
+		"""
+		try:
+			query = f"""CREATE DATABASE {database_name};"""
+			cursor = self.cursor()
+			cursor.execute(query)
+
+		except (Exception, p.DatabaseError)	as error:
+			return f"failed to create {database_name}, because of {error}"
